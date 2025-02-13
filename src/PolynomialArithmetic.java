@@ -32,17 +32,16 @@ public class PolynomialArithmetic {
         DoublePolynomial q = new DoublePolynomial();
         DoublePolynomial r = new DoublePolynomial();
 
-        for (int exp : p.getCoefficients().keySet())
-            r.setCoefficient(exp, p.getCoefficient(exp).doubleValue());
+        p.getCoefficients().keySet().forEach(exp ->
+                r.setCoefficient(exp, p.getCoefficient(exp).doubleValue()));
 
         while (!r.isNull() && r.getDegree() >= d.getDegree()) {
             int exp = r.getDegree() - d.getDegree();
             double coeff = r.getCoefficient(r.getDegree()) / d.getCoefficient(d.getDegree());
             q.addCoefficient(exp, coeff);
 
-            for (int dExp : d.getCoefficients().descendingKeySet()) {
-                r.addCoefficient(dExp + exp, -d.getCoefficient(dExp) * coeff);
-            }
+            d.getCoefficients().descendingKeySet().forEach(dExp ->
+                    r.addCoefficient(dExp + exp, -d.getCoefficient(dExp) * coeff));
         }
 
         return new DoublePolynomial[] {q, r};
