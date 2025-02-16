@@ -39,7 +39,6 @@ public class PolynomialArithmetic {
             int exp = r.getDegree() - d.getDegree();
             double coeff = r.getCoefficient(r.getDegree()) / d.getCoefficient(d.getDegree());
             q.addCoefficient(exp, coeff);
-
             d.getCoefficients().descendingKeySet().forEach(dExp ->
                     r.addCoefficient(dExp + exp, -d.getCoefficient(dExp) * coeff));
         }

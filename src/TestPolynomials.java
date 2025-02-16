@@ -7,6 +7,7 @@ public class TestPolynomials {
         p.setCoefficient(1, -3);
         p.setCoefficient(0, 4);
         System.out.println("P = " + p);
+        System.out.println("P(2) = " + p.evaluate(2));
 
         IntegerPolynomial q = PolynomialRegex.stringToPolynomial("x^3+4x^2+2");
         assert q != null;

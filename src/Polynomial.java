@@ -36,4 +36,6 @@ public abstract class Polynomial<T extends Number> {
     }
 
     public abstract void addCoefficient(int exp, T value);
+
+    public abstract T evaluate(T x);
 }

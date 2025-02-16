@@ -18,6 +18,21 @@ public class IntegerPolynomial extends Polynomial<Integer> {
     }
 
     @Override
+    public Integer evaluate(Integer x) {
+        int result = 0, power = 1, currentExp = 0;
+
+        for (int exp: getCoefficients().keySet()) {
+            while (currentExp < exp) {
+                power *= x;
+                currentExp++;
+            }
+            result += getCoefficient(exp) * power;
+        }
+
+        return result;
+    }
+
+    @Override
     public String toString() {
         if (getCoefficients().isEmpty()) return "0";
 

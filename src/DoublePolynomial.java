@@ -9,6 +9,22 @@ public class DoublePolynomial extends Polynomial<Double> {
     }
 
     @Override
+    public Double evaluate(Double x) {
+        double result = 0, power = 1;
+        int currentExp = 0;
+
+        for (int exp: getCoefficients().keySet()) {
+            while (currentExp < exp) {
+                power *= x;
+                currentExp++;
+            }
+            result += getCoefficient(exp) * power;
+        }
+
+        return result;
+    }
+
+    @Override
     public String toString() {
         if (getCoefficients().isEmpty()) return "0";
 
