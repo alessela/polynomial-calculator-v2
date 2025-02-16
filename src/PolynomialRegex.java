@@ -2,14 +2,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PolynomialRegex {
-    public static IntegerPolynomial stringToPolynomial(String str){
+    public static IntegerPolynomial parsePolynomial(String str) throws ParsePolynomialException {
         // verific mai intai daca stringul str respecta structura unui polinom
         String monomial_pattern = "(\\d*x(\\^\\d+)?|\\d+)";
         Pattern pattern = Pattern.compile("[+-]?"+monomial_pattern+"([+-]"+monomial_pattern+")*");
         Matcher matcher = pattern.matcher(str);
 
         if (!matcher.matches()) // daca nu respecta atunci ma opresc
-            return null;
+            throw new ParsePolynomialException(str);
 
         //altfel voi extrage fiecare monom din stringul str folosind pattern-ul de mai jos
         IntegerPolynomial p = new IntegerPolynomial();

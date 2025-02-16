@@ -28,7 +28,10 @@ public class PolynomialArithmetic {
         return result;
     }
 
-    public static DoublePolynomial[] divide(IntegerPolynomial p, IntegerPolynomial d) {
+    public static DoublePolynomial[] divide(IntegerPolynomial p, IntegerPolynomial d) throws DivisionByZeroException{
+        if (d.isNull())
+            throw new DivisionByZeroException();
+
         DoublePolynomial q = new DoublePolynomial();
         DoublePolynomial r = new DoublePolynomial();
 
